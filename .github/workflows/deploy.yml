@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Spustí sa pri každom push-i do `main` vetvy.
+  # Ak používaš inú hlavnú vetvu (napr. `master`), zmeň to tu.
+  push:
+    branches: [ main ]
+
+  # Umožňuje spustiť tento workflow manuálne z "Actions" záložky v GitHub repozitári.
+  workflow_dispatch:
+
+# Nastavenie oprávnení pre GITHUB_TOKEN, aby akcia mohla nasadiť stránku na GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Povolenie iba jedného súbežného nasadenia, aby sa predišlo problémom pri rýchlych commitoch.
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Odporúčaná verzia pre Astro
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build your site
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
