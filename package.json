@@ -10,5 +10,9 @@
   },
   "dependencies": {
     "astro": "^5.14.5"
+  },
+  "devDependencies": {
+    "marked": "^16.4.0",
+    "mjml": "^4.16.1"
   }
 }
