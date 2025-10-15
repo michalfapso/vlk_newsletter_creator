@@ -1,0 +1,37 @@
+---
+import { getImage } from "astro:assets";
+
+const { src: imageSrc, alt } = Astro.props;
+
+// `getImage` dokáže vygenerovať `src` aj `srcset` naraz.
+const optimizedImage = await getImage({
+    src: imageSrc, // Odovzdáme priamo celý objekt, ktorý sme dostali v props
+    widths: [300, 600, 1200],
+    sizes: "(max-width: 600px) 100vw, 600px",
+    format: "jpeg",
+    quality: 80,
+});
+
+// `getImage` vráti relatívne cesty, pre e-mail ich potrebujeme zmeniť na absolútne.
+const absoluteSrc = new URL(optimizedImage.src, Astro.site).href;
+
+const absoluteSrcset = optimizedImage.srcSet?.attribute
+    ? optimizedImage.srcSet.attribute
+        .split(", ")
+        .map(entry => {
+            const [url, descriptor] = entry.split(" ");
+            return `${new URL(url, Astro.site).href} ${descriptor}`;
+        })
+        .join(", ")
+    : undefined;
+---
+
+<img
+    src={absoluteSrc}
+    srcset={absoluteSrcset}
+    sizes={optimizedImage.attributes.sizes}
+    alt={alt}
+    width={optimizedImage.attributes.width}
+    height={optimizedImage.attributes.height}
+    style="display:block; max-width:100%; width: 100%; height:auto; border:0; margin: 0 0 15px;"
+/>

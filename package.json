@@ -9,7 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.14.5"
+    "@astrojs/mdx": "^4.3.7",
+    "astro": "^5.14.5",
+    "rehype-rewrite": "^4.0.3"
   },
   "devDependencies": {
     "marked": "^16.4.0",

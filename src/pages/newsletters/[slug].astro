@@ -1,0 +1,33 @@
+---
+// src/pages/newsletters/[slug].astro
+import { getCollection, type CollectionEntry } from 'astro:content';
+import NewsletterLayout from '../../layouts/NewsletterLayout.astro';
+import MarkdownImage from '../../components/MarkdownImage.astro';
+
+// Táto časť je správna a zostáva nezmenená
+export async function getStaticPaths() {
+  const allNewsletters = await getCollection('newsletters');
+  return allNewsletters.map((entry: CollectionEntry<'newsletters'>) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render(); // Správny spôsob: Získame Content komponent zavolaním render()
+
+// Vytvoríme mapovanie: povieme Astru, aby `<img>` tagy z Markdownu renderovalo pomocou MarkdownImage.
+const components = {
+  img: MarkdownImage,
+};
+---
+<!-- 
+  ============================================================
+  SEKCIA 1: Vizuálny náhľad e-mailu.
+  Toto je hlavný obsah stránky, ktorý sa zobrazí v prehliadači.
+  Je obalený v dive, aby ho náš skript vedel ľahko nájsť.
+  ============================================================
+-->
+<NewsletterLayout>
+  <Content components={components} />
+</NewsletterLayout>
