@@ -4,8 +4,8 @@ import rehypeRewrite from 'rehype-rewrite';
 
 import mdx from '@astrojs/mdx';
 
-// const SITE_URL = 'https://michalfapso.github.io/vlk_newsletter_creator';
-const SITE_URL = 'http://localhost:4321';
+const SITE_URL = 'https://michalfapso.github.io/vlk_newsletter_creator';
+// const SITE_URL = 'http://localhost:4321';
 
 export default defineConfig({
   site: SITE_URL,
