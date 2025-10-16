@@ -4,11 +4,15 @@ import rehypeRewrite from 'rehype-rewrite';
 
 import mdx from '@astrojs/mdx';
 
-const SITE_URL = 'https://michalfapso.github.io/vlk_newsletter_creator';
-// const SITE_URL = 'http://localhost:4321';
+// Pre produkciu na GitHub Pages. `site` je plná URL adresa, kde bude stránka nasadená.
+const PROD_SITE_URL = 'https://michalfapso.github.io';
+// Pre lokálny vývoj a `astro preview`. `site` je len origin (doména + port).
+const LOCAL_SITE_URL = 'http://localhost:4321';
 
 export default defineConfig({
-  site: SITE_URL,
+  site: LOCAL_SITE_URL, // Pred commitom na GitHub vždy použi PROD_SITE_URL
+  base: '/vlk_newsletter_creator',
+  trailingSlash: 'always',
 
   markdown: {
     rehypePlugins: [

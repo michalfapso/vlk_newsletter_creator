@@ -15,7 +15,7 @@
     <mj-wrapper background-color="#ffffff" padding="0">
       <mj-section>
         <mj-column>
-          <mj-image href="https://www.wolf.sk" src="/assets/header1.png" alt="Lesoochranárske zoskupenie VLK" padding="0" />
+          <mj-image href="https://www.wolf.sk" src={`${import.meta.env.BASE_URL}assets/header1.png`} alt="Lesoochranárske zoskupenie VLK" padding="0" />
         </mj-column>
       </mj-section>
 
@@ -29,7 +29,7 @@
 
       <mj-section>
         <mj-column>
-          <mj-image href="https://www.wolf.sk" src="/assets/header2.png" alt="Zachraňujeme lesy" padding="0" />
+          <mj-image href="https://www.wolf.sk" src={`${import.meta.env.BASE_URL}assets/header2.png`} alt="Zachraňujeme lesy" padding="0" />
         </mj-column>
       </mj-section>
       <mj-section padding="10px 0">

@@ -22,7 +22,7 @@ allNewsletters.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.
     <ul>
         {allNewsletters.map(newsletter => (
             <li>
-                <span>{newsletter.data.publishDate.toLocaleDateString('sk-SK')}</span> <a href={`/newsletters/${newsletter.slug}`}>{newsletter.data.title}</a>
+                <span>{newsletter.data.publishDate.toLocaleDateString('sk-SK')}</span> <a href={`${import.meta.env.BASE_URL}newsletters/${newsletter.slug}/`}>{newsletter.data.title}</a>
             </li>
         ))}
     </ul>
