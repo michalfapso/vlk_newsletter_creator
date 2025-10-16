@@ -10,7 +10,7 @@ const PROD_SITE_URL = 'https://michalfapso.github.io';
 const LOCAL_SITE_URL = 'http://localhost:4321';
 
 export default defineConfig({
-  site: LOCAL_SITE_URL, // Pred commitom na GitHub vždy použi PROD_SITE_URL
+  site: PROD_SITE_URL, // Pred commitom na GitHub vždy použi PROD_SITE_URL
   base: '/vlk_newsletter_creator',
   trailingSlash: 'always',
 
