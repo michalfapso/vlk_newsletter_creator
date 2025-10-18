@@ -3,6 +3,7 @@ backend:
   repo: michalfapso/vlk_newsletter_creator
   branch: main
   base_url: https://vlk-newsletter-creator-decap-oauth.michal-fapso.workers.dev
+  auth_endpoint: /
 
 # This line should be commented out before pushing to production
 # local_backend: true
