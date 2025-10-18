@@ -19,6 +19,7 @@ allNewsletters.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.
 </head>
 <body>
     <h1>Archív Newsletterov</h1>
+    <a href={`${import.meta.env.BASE_URL}admin/`}>Admin</a>
     <ul>
         {allNewsletters.map(newsletter => (
             <li>

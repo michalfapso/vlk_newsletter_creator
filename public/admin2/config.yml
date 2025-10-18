@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: michalfapso/vlk_newsletter_creator
+  branch: main
+  base_url: https://vlk-newsletter-creator-decap-oauth.michal-fapso.workers.dev
+  auth_endpoint: auth
+
+local_backend: true
+  
+media_folder: "src/content/newsletters/{{slug}}"
+public_folder: "/content/newsletters/{{slug}}"
+
+collections:
+  - name: "newsletters"
+    label: "Newsletters"
+    folder: "src/content/newsletters"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+    path: "{{slug}}/index"
+    extension: "mdx"
+    format: "frontmatter"
+    summary: "{{title}} - {{year}}-{{month}}-{{day}}"
+    sortable_fields: ['publishDate', 'title']
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
